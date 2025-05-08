@@ -30,6 +30,9 @@ public class UserRegistrationServlet extends HttpServlet {
 
         request.getRequestDispatcher("userInfo.jsp").forward(request, response);
     }
+    
+
+
 
     public void destroy() {
     }

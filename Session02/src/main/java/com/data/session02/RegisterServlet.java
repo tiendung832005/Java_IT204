@@ -22,6 +22,7 @@ public class RegisterServlet extends HttpServlet {
         String email = request.getParameter("email");
 
         request.getSession().setAttribute("registeredName", name);
+        request.getSession().setAttribute("registeredEmail", email);
 
         response.sendRedirect("thankyou.jsp");
     }

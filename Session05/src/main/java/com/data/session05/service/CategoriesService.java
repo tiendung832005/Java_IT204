@@ -1,11 +1,11 @@
-package com.data.session05.dao;
+package com.data.session05.service;
 
 import com.data.session05.model.Categories;
 
 import java.util.List;
 
-
-public interface CategoriesDAO {
+public interface CategoriesService {
     List<Categories> findAll();
+
     boolean save(Categories catalog);
 }

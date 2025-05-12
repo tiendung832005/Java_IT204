@@ -1,5 +1,6 @@
 package com.data.session05.utils;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 
 public class ConnectionDB {
@@ -19,7 +20,7 @@ public class ConnectionDB {
         return con;
     }
 
-    public static void closeConnection(Connection con) {
+    public static void closeConnection(Connection con, CallableStatement callSt) {
         if (con != null) {
             try {
                 con.close();

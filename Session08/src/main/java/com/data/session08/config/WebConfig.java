@@ -1,14 +1,20 @@
 package com.data.session08.config;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-@Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[] {AppConfig.class};
+    }
 
     @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/WEB-INF/views/", ".jsp");
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[0];
+    }
+
+    @Override
+    protected String[] getServletMappings() {
+        return new String[] {"/"};
     }
 }

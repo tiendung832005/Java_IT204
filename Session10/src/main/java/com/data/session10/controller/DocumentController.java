@@ -23,7 +23,7 @@ public class DocumentController {
             try {
                 String filePath = UPLOAD_DIR + file.getOriginalFilename();
                 File destinationFile = new File(filePath);
-                destinationFile.getParentFile().mkdirs(); // Ensure the directory exists
+                destinationFile.getParentFile().mkdirs();
                 file.transferTo(destinationFile);
 
 

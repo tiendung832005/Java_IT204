@@ -5,10 +5,7 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
-<a href="WEB-INF/views/Bai5/documentForm.jsp">5</a>
+    <h1>Home page</h1>
+    <a href="movie">movie form</a>
 </body>
 </html>

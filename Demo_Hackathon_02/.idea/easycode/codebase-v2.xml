@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/main/java/com/data/demo_hackathon_02/config/DatabaseConfig.java;C:/Users/hi/Desktop/Java_IT204/Demo_Hackathon_02/src/main/java/com/data/demo_hackathon_02/controller/ProductController.java;C:/Users/hi/Desktop/Java_IT204/Demo_Hackathon_02/src/main/java/com/data/demo_hackathon_02/dto/ProductDTO.java;C:/Users/hi/Desktop/Java_IT204/Demo_Hackathon_02/src/main/java/com/data/demo_hackathon_02/model/Product.java;C:/Users/hi/Desktop/Java_IT204/Demo_Hackathon_02/src/main/java/com/data/demo_hackathon_02/repository/ProductRepository.java;C:/Users/hi/Desktop/Java_IT204/Demo_Hackathon_02/src/main/java/com/data/demo_hackathon_02/service/ProductService.java;C:/Users/hi/Desktop/Java_IT204/Demo_Hackathon_02/src/main/java/com/data/demo_hackathon_02/HelloServlet.java" />
+  </component>
+</project>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/search" method="get">
+  <input type="text" name="departure" placeholder="Điểm đi">
+  <input type="text" name="destination" placeholder="Điểm đến">
+  <button type="submit">Tìm kiếm</button>
+</form>
+
+<table>
+  <tr><th>Điểm đi</th><th>Điểm đến</th><th>Giờ khởi hành</th><th>Ghế trống</th><th>Action</th></tr>
+  <tr th:each="trip : ${trips}">
+    <td th:text="${trip.departurePoint}"></td>
+    <td th:text="${trip.destination}"></td>
+    <td th:text="${trip.departureTime}"></td>
+    <td th:text="${trip.seatsAvailable}"></td>
+    <td><a th:href="@{/book/{id}(id=${trip.id})}">Đặt vé</a></td>
+  </tr>
+</table>
+</body>
+</html>

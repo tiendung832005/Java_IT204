@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Thanh toán</title>
+</head>
+<body>
+<h1>Thanh toán</h1>
+<form th:action="@{/checkout}" th:object="${order}" method="post">
+  <label for="recipientName">Tên người nhận:</label>
+  <input type="text" id="recipientName" name="recipientName" th:field="*{recipientName}" required>
+  <br>
+
+  <label for="phoneNumber">Số điện thoại:</label>
+  <input type="text" id="phoneNumber" name="phoneNumber" th:field="*{phoneNumber}" required>
+  <br>
+
+  <label for="address">Địa chỉ:</label>
+  <input type="text" id="address" name="address" th:field="*{address}" required>
+  <br>
+
+  <p>Tổng tiền: <span th:text="${order.totalMoney}"></span></p>
+  <button type="submit">Thanh toán</button>
+</form>
+</body>
+</html>

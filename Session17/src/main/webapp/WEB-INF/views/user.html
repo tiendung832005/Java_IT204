@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Quản lý người dùng</title>
+</head>
+<body>
+<h1>Danh sách người dùng</h1>
+<form th:action="@{/admin/users}" method="get">
+  <label for="filter">Tìm kiếm:</label>
+  <input type="text" id="filter" name="filter" th:value="${filter}">
+  <button type="submit">Lọc</button>
+</form>
+<table>
+  <thead>
+  <tr>
+    <th>Tên người dùng</th>
+    <th>Email</th>
+    <th>Trạng thái</th>
+    <th>Hành động</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.username}"></td>
+    <td th:text="${user.email}"></td>
+    <td th:text="${user.status}"></td>
+    <td>
+      <form th:action="@{/admin/users/lock/{id}(id=${user.id})}" method="post" th:if="${user.status == 'active'}">
+        <button type="submit">Khóa</button>
+      </form>
+      <form th:action="@{/admin/users/unlock/{id}(id=${user.id})}" method="post" th:if="${user.status == 'locked'}">
+        <button type="submit">Mở khóa</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <a th:href="@{/admin/users(page=${currentPage - 1}, pageSize=${pageSize}, filter=${filter})}" th:if="${currentPage > 1}">Trang trước</a>
+  <a th:href="@{/admin/users(page=${currentPage + 1}, pageSize=${pageSize}, filter=${filter})}" th:if="${users.size() == pageSize}">Trang sau</a>
+</div>
+</body>
+</html>

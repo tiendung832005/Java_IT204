@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quản lý đơn hàng</title>
+</head>
+<body>
+<h1>Danh sách đơn hàng</h1>
+<form th:action="@{/admin/orders}" method="get">
+    <label for="recipientName">Tên người nhận:</label>
+    <input type="text" id="recipientName" name="recipientName" th:value="${recipientName}">
+    <label for="orderDate">Ngày đặt hàng:</label>
+    <input type="date" id="orderDate" name="orderDate" th:value="${orderDate}">
+    <label for="status">Trạng thái:</label>
+    <select id="status" name="status">
+        <option value="" th:selected="${status == null}">Tất cả</option>
+        <option value="pending" th:selected="${status == 'pending'}">Chờ xác nhận</option>
+        <option value="confirmed" th:selected="${status == 'confirmed'}">Đã xác nhận</option>
+        <option value="cancelled" th:selected="${status == 'cancelled'}">Đã hủy</option>
+    </select>
+    <button type="submit">Lọc</button>
+</form>
+<table>
+    <thead>
+    <tr>
+        <th>Mã đơn hàng</th>
+        <th>Tên người nhận</th>
+        <th>Ngày đặt hàng</th>
+        <th>Tổng tiền</th>
+        <th>Trạng thái</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.recipientName}"></td>
+        <td th:text="${#dates.format(order.orderDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${order.totalMoney}"></td>
+        <td th:text="${order.status}"></td>
+        <td>
+            <form th:action="@{/admin/orders/update-status/{id}(id=${order.id})}" method="post">
+                <select name="status">
+                    <option value="pending" th:selected="${order.status == 'pending'}">Chờ xác nhận</option>
+                    <option value="confirmed" th:selected="${order.status == 'confirmed'}">Đã xác nhận</option>
+                    <option value="cancelled" th:selected="${order.status == 'cancelled'}">Đã hủy</option>
+                </select>
+                <button type="submit">Cập nhật</button>
+            </form>
+            <form th:action="@{/admin/orders/delete/{id}(id=${order.id})}" method="post">
+                <button type="submit">Xóa</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{/admin/orders(page=${currentPage - 1}, pageSize=${pageSize}, recipientName=${recipientName}, orderDate=${orderDate}, status=${status})}" th:if="${currentPage > 1}">Trang trước</a>
+    <a th:href="@{/admin/orders(page=${currentPage + 1}, pageSize=${pageSize}, recipientName=${recipientName}, orderDate=${orderDate}, status=${status})}" th:if="${orders.size() == pageSize}">Trang sau</a>
+</div>
+</body>
+</html>

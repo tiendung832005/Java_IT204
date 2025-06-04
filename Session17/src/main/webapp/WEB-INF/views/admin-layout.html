@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin</title>
+</head>
+<body>
+<div>
+  <aside>
+    <ul>
+      <li><a th:href="@{/admin}">Dashboard</a></li>
+      <li><a th:href="@{/admin/products}">Quản lý sản phẩm</a></li>
+      <li><a th:href="@{/admin/users}">Quản lý người dùng</a></li>
+      <li><a th:href="@{/admin/orders}">Quản lý đơn hàng</a></li>
+    </ul>
+  </aside>
+  <main>
+    <div th:replace="${content}"></div>
+  </main>
+</div>
+</body>
+</html>

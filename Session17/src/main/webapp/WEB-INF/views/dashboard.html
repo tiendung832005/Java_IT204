@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Admin Dashboard</title>
+</head>
+<body>
+<div>
+  <aside>
+    <ul>
+      <li><a th:href="@{/admin}">Dashboard</a></li>
+      <li><a th:href="@{/admin/products}">Quản lý sản phẩm</a></li>
+      <li><a th:href="@{/admin/users}">Quản lý người dùng</a></li>
+      <li><a th:href="@{/admin/orders}">Quản lý đơn hàng</a></li>
+    </ul>
+  </aside>
+  <main>
+    <h1>Thống kê</h1>
+    <p>Số lượng người dùng: <span th:text="${userCount}"></span></p>
+    <p>Số lượng sản phẩm: <span th:text="${productCount}"></span></p>
+    <p>Số lượng đơn hàng: <span th:text="${orderCount}"></span></p>
+    <p>Doanh thu tháng này: <span th:text="${monthlyRevenue}"></span></p>
+    <p>Doanh thu năm nay: <span th:text="${yearlyRevenue}"></span></p>
+  </main>
+</div>
+</body>
+</html>

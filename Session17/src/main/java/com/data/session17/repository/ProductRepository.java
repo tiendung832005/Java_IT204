@@ -29,4 +29,49 @@ public class ProductRepository {
             return session.get(Product.class, id);
         }
     }
+
+    public List<Product> findProducts(int page, int pageSize, String filter) {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "FROM Product WHERE productName LIKE :filter ORDER BY id DESC";
+            return session.createQuery(hql, Product.class)
+                    .setParameter("filter", "%" + filter + "%")
+                    .setFirstResult((page - 1) * pageSize)
+                    .setMaxResults(pageSize)
+                    .getResultList();
+        }
+    }
+
+    public long countProducts(String filter) {
+        try (Session session = sessionFactory.openSession()) {
+            String hql = "SELECT COUNT(*) FROM Product WHERE productName LIKE :filter";
+            return (long) session.createQuery(hql)
+                    .setParameter("filter", "%" + filter + "%")
+                    .uniqueResult();
+        }
+    }
+
+    public Product findById(int id) {
+        try (Session session = sessionFactory.openSession()) {
+            return session.get(Product.class, id);
+        }
+    }
+
+    public void saveOrUpdate(Product product) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            session.saveOrUpdate(product);
+            session.getTransaction().commit();
+        }
+    }
+
+    public void deleteById(int id) {
+        try (Session session = sessionFactory.openSession()) {
+            session.beginTransaction();
+            Product product = session.get(Product.class, id);
+            if (product != null) {
+                session.delete(product);
+            }
+            session.getTransaction().commit();
+        }
+    }
 }

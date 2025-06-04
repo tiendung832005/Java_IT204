@@ -54,4 +54,7 @@ public class ProductCart {
     }
 
 
+    public Product getProduct() {
+        return null;
+    }
 }

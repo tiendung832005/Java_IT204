@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Screen Room Management</title>
+</head>
+<body>
+<h1>Screen Room Management</h1>
+<a th:href="@{/screen-rooms/add}">Add Screen Room</a>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Room Name</th>
+    <th>Capacity</th>
+    <th>Screen Type</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="screenRoom : ${screenRooms}">
+    <td th:text="${screenRoom.roomName}"></td>
+    <td th:text="${screenRoom.capacity}"></td>
+    <td th:text="${screenRoom.screenType}"></td>
+    <td th:text="${screenRoom.status ? 'Active' : 'Inactive'}"></td>
+    <td>
+      <a th:href="@{/screen-rooms/edit/{id}(id=${screenRoom.id})}">Edit</a>
+      <form th:action="@{/screen-rooms/delete/{id}(id=${screenRoom.id})}" method="post" style="display:inline;">
+        <button type="submit">Deactivate</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

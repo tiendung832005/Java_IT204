@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Movie Form</title>
+</head>
+<body>
+<h1 th:text="${movie.id == null ? 'Add Movie' : 'Edit Movie'}"></h1>
+<form th:action="${movie.id == null} ? @{/movies/add} : @{/movies/edit}" method="post">
+    <input type="hidden" name="id" th:value="${movie.id}" th:if="${movie.id != null}" />
+
+    <label>Title:</label>
+    <input type="text" name="title" th:value="${movie.title}" required/>
+
+    <label>Director:</label>
+    <input type="text" name="director" th:value="${movie.director}" required/>
+
+    <label>Release Year:</label>
+    <input type="number" name="releaseYear" th:value="${movie.releaseYear}" required/>
+
+    <label>Genre:</label>
+    <input type="text" name="genre" th:value="${movie.genre}"/>
+
+    <label>Duration:</label>
+    <input type="number" name="duration" th:value="${movie.duration}" required/>
+
+    <label>Language:</label>
+    <input type="text" name="language" th:value="${movie.language}"/>
+
+    <label>Poster URL:</label>
+    <input type="url" name="poster" th:value="${movie.poster}" required/>
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>

@@ -10,16 +10,18 @@
         <property name="hibernate.connection.password">12345678</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="show_sql">true</property>
-        <property name="hibernate.current_session_context_class">thread</property>
-
         <!-- update: tự gen ra bảng, cột trong db nếu chưa có -->
-        <!-- update: nêếu có rồi bỏ qua -->
+        <!-- update: nếu có rồi bỏ qua -->
         <property name="hbm2ddl.auto">update</property>
 
-
-        <!--        declare entity-->
         <!-- declare entity -->
-        <mapping class="com.data.session19.entity.Customer" />
+        <mapping class="com.data.session19a.entity.User" />
+        <mapping class="com.data.session19a.entity.Movie" />
+        <mapping class="com.data.session19a.entity.Theater" />
+        <mapping class="com.data.session19a.entity.ScreenRoom" />
+        <mapping class="com.data.session19a.entity.Seat" />
+
+
 
     </session-factory>
 </hibernate-configuration>

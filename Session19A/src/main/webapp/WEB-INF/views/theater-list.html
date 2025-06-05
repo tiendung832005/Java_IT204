@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Theater Management</title>
+</head>
+<body>
+<h1>Theater Management</h1>
+<a th:href="@{/theaters/add}">Add Theater</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Number of Screen Rooms</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="theater : ${theaters}">
+        <td th:text="${theater.theaterName}"></td>
+        <td th:text="${theater.address}"></td>
+        <td th:text="${theater.numberScreenRoom}"></td>
+        <td th:text="${theater.status ? 'Active' : 'Inactive'}"></td>
+        <td>
+            <a th:href="@{/theaters/edit/{id}(id=${theater.id})}">Edit</a>
+            <form th:action="@{/theaters/delete/{id}(id=${theater.id})}" method="post" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+            <form th:action="@{/theaters/status/{id}(id=${theater.id})}" method="post" style="display:inline;">
+                <input type="hidden" name="status" th:value="${!theater.status}"/>
+                <button type="submit" th:text="${theater.status ? 'Deactivate' : 'Activate'}"></button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a th:href="@{/theaters(page=${currentPage - 1}, size=${pageSize})}" th:if="${currentPage > 1}">Previous</a>
+    <a th:href="@{/theaters(page=${currentPage + 1}, size=${pageSize})}" th:if="${theaters.size() == pageSize}">Next</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Seed list</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="seed : ${seeds}">
+        <td><img th:src="${seed.image}" alt="Seed Image" width="100"/></td>
+        <td th:text="${seed.seedName}"></td>
+        <td th:text="${seed.description}"></td>
+        <td th:text="${seed.price}"></td>
+        <td th:text="${seed.stock}"></td>
+        <td>
+            <a th:href="@{/seeds/edit/{id}(id=${seed.id})}">Edit</a>
+            <a th:href="@{/seeds/delete/{id}(id=${seed.id})}" onclick="return confirm('Are you sure?')">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
